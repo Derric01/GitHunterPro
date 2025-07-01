@@ -57,6 +57,57 @@ export const TRENDING_DEVELOPERS = [
   }
 ];
 
+export const TRENDING_ORGANIZATIONS = [
+  {
+    login: "microsoft",
+    name: "Microsoft",
+    avatar: "https://avatars.githubusercontent.com/u/6154722?v=4",
+    description: "Open source projects and more from Microsoft"
+  },
+  {
+    login: "google",
+    name: "Google",
+    avatar: "https://avatars.githubusercontent.com/u/1342004?v=4",
+    description: "Google Open Source"
+  },
+  {
+    login: "facebook",
+    name: "Meta",
+    avatar: "https://avatars.githubusercontent.com/u/69631?v=4",
+    description: "Open source projects from Meta"
+  },
+  {
+    login: "vercel",
+    name: "Vercel",
+    avatar: "https://avatars.githubusercontent.com/u/14985020?v=4",
+    description: "The Frontend Cloud"
+  },
+  {
+    login: "netflix",
+    name: "Netflix",
+    avatar: "https://avatars.githubusercontent.com/u/913567?v=4",
+    description: "Netflix Open Source Platform"
+  },
+  {
+    login: "spotify",
+    name: "Spotify",
+    avatar: "https://avatars.githubusercontent.com/u/251374?v=4",
+    description: "Spotify Open Source"
+  },
+  {
+    login: "github",
+    name: "GitHub",
+    avatar: "https://avatars.githubusercontent.com/u/9919?v=4",
+    description: "How people build software"
+  },
+  {
+    login: "airbnb",
+    name: "Airbnb",
+    avatar: "https://avatars.githubusercontent.com/u/698437?v=4",
+    description: "Belong Anywhere"
+  }
+];
+
 export const SAMPLE_SEARCHES = [
   "octocat",
   "github",

@@ -16,7 +16,7 @@ import {
   BarChart3, PieChart, RefreshCw
 } from "lucide-react";
 import { toast } from "sonner";
-import { TRENDING_DEVELOPERS, SAMPLE_SEARCHES } from "@/lib/trending";
+import { TRENDING_DEVELOPERS, TRENDING_ORGANIZATIONS } from "@/lib/trending";
 import { AdvancedAnalytics } from "@/components/AdvancedAnalytics";
 import { RepoAnalytics } from "@/components/RepoAnalytics";
 import { DeveloperAchievements } from "@/components/DeveloperAchievements";
@@ -1133,15 +1133,21 @@ export default function Home() {
               </div>
               
               <div className="flex flex-wrap justify-center gap-3">
-                {SAMPLE_SEARCHES.map((org) => (
+                {TRENDING_ORGANIZATIONS.map((org) => (
                   <button
-                    key={org}
-                    onClick={() => setUsername(org)}
-                    className="px-6 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950/20 transition-all duration-200 flex items-center space-x-2 group"
+                    key={org.login}
+                    onClick={() => setUsername(org.login)}
+                    className="px-6 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-950/20 transition-all duration-200 flex items-center space-x-3 group"
                   >
-                    <Github className="h-5 w-5 text-slate-600 dark:text-slate-400 group-hover:text-blue-600 transition-colors" />
+                    <Image
+                      src={org.avatar}
+                      alt={org.name}
+                      width={24}
+                      height={24}
+                      className="rounded-full"
+                    />
                     <span className="font-medium text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">
-                      {org}
+                      {org.name}
                     </span>
                   </button>
                 ))}
