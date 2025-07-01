@@ -1,0 +1,17 @@
+/* Custom styles for GitHunter */
+
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Dynamic width for language progress bars */
+.language-progress-bar {
+  transition: width 0.3s ease-in-out;
+  width: var(--progress-width, 0%);
+}
