@@ -309,27 +309,27 @@ export default function Home() {
     }`}>
       {/* Enhanced Header */}
       <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between mb-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
             <div className="flex items-center space-x-3">
               <div className="p-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg">
                 <Github className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   GitHunter Pro
                 </h1>
                 <p className="text-xs text-slate-500 dark:text-slate-400">Advanced GitHub Analytics</p>
               </div>
             </div>
             
-            <div className="flex items-center space-x-3">
+            <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
               {compareUsers.length > 0 && (
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button variant="outline" size="sm">
-                      <Users className="h-4 w-4 mr-2" />
-                      Compare ({compareUsers.length})
+                    <Button variant="outline" size="sm" className="flex-1 sm:flex-none">
+                      <Users className="h-4 w-4 mr-1 sm:mr-2" />
+                      <span className="hidden sm:inline">Compare </span>({compareUsers.length})
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="max-w-7xl max-h-[90vh] overflow-y-auto">
@@ -399,29 +399,31 @@ export default function Home() {
                 variant="outline"
                 size="sm"
                 onClick={() => setDarkMode(!darkMode)}
+                className="flex-1 sm:flex-none"
               >
                 {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                <span className="ml-1 sm:hidden">{darkMode ? 'Light' : 'Dark'}</span>
               </Button>
             </div>
           </div>
           
-          <div className="flex flex-col lg:flex-row gap-3">
-            <div className="relative flex-1">
+          <div className="flex flex-col gap-3">
+            <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
               <Input
-                className="pl-10 h-12 text-lg"
+                className="pl-10 h-12 text-base sm:text-lg"
                 placeholder="Enter GitHub username to discover amazing profiles..."
                 value={username}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleSearch()}
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <Button 
                 onClick={handleSearch} 
                 disabled={loading}
                 size="lg"
-                className="h-12 px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                className="h-12 px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 flex-1 sm:flex-none"
               >
                 {loading ? (
                   <>
@@ -438,14 +440,17 @@ export default function Home() {
               
               {user && (
                 <div className="flex gap-2">
-                  <Button variant="outline" size="lg" className="h-12" onClick={exportUserData}>
-                    <Download className="h-4 w-4" />
+                  <Button variant="outline" size="lg" className="h-12 flex-1 sm:flex-none" onClick={exportUserData}>
+                    <Download className="h-4 w-4 mr-1 sm:mr-0" />
+                    <span className="sm:hidden ml-1">Export</span>
                   </Button>
-                  <Button variant="outline" size="lg" className="h-12" onClick={shareProfile}>
-                    <Share className="h-4 w-4" />
+                  <Button variant="outline" size="lg" className="h-12 flex-1 sm:flex-none" onClick={shareProfile}>
+                    <Share className="h-4 w-4 mr-1 sm:mr-0" />
+                    <span className="sm:hidden ml-1">Share</span>
                   </Button>
-                  <Button variant="outline" size="lg" className="h-12" onClick={addToComparison}>
-                    <Users className="h-4 w-4" />
+                  <Button variant="outline" size="lg" className="h-12 flex-1 sm:flex-none" onClick={addToComparison}>
+                    <Users className="h-4 w-4 mr-1 sm:mr-0" />
+                    <span className="sm:hidden ml-1">Compare</span>
                   </Button>
                 </div>
               )}
@@ -486,7 +491,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         {loading && (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-6"></div>
@@ -511,7 +516,7 @@ export default function Home() {
             {/* Enhanced User Profile Card */}
             <Card className="overflow-hidden bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border-2">
               <CardContent className="p-8">
-                <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-6 lg:space-y-0 lg:space-x-12">
+                <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-4 lg:space-y-0 lg:space-x-12">
                   <div className="relative">
                     <Image
                       src={user.avatar_url}
@@ -562,49 +567,49 @@ export default function Home() {
                       </p>
                     )}
                     
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
                       {user.location && (
                         <div className="flex items-center space-x-2 text-slate-600 dark:text-slate-400">
-                          <MapPin className="h-4 w-4" />
-                          <span>{user.location}</span>
+                          <MapPin className="h-4 w-4 flex-shrink-0" />
+                          <span className="truncate">{user.location}</span>
                         </div>
                       )}
                       {user.company && (
                         <div className="flex items-center space-x-2 text-slate-600 dark:text-slate-400">
-                          <Users className="h-4 w-4" />
-                          <span>{user.company}</span>
+                          <Users className="h-4 w-4 flex-shrink-0" />
+                          <span className="truncate">{user.company}</span>
                         </div>
                       )}
                       <div className="flex items-center space-x-2 text-slate-600 dark:text-slate-400">
-                        <Calendar className="h-4 w-4" />
+                        <Calendar className="h-4 w-4 flex-shrink-0" />
                         <span>Joined {formatDate(user.created_at)}</span>
                       </div>
                       <div className="flex items-center space-x-2 text-slate-600 dark:text-slate-400">
-                        <Activity className="h-4 w-4" />
+                        <Activity className="h-4 w-4 flex-shrink-0" />
                         <span>{getActivityScore().toFixed(0)}% Active</span>
                       </div>
                     </div>
 
                     {/* Enhanced Stats Grid */}
-                    <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-                      <div className="text-center p-4 bg-blue-50 dark:bg-blue-950/30 rounded-xl">
-                        <div className="text-3xl font-bold text-blue-600 mb-1">{user.followers}</div>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6 mb-8">
+                      <div className="text-center p-3 sm:p-4 bg-blue-50 dark:bg-blue-950/30 rounded-xl">
+                        <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">{user.followers}</div>
                         <div className="text-xs text-slate-600 dark:text-slate-400">Followers</div>
                       </div>
-                      <div className="text-center p-4 bg-green-50 dark:bg-green-950/30 rounded-xl">
-                        <div className="text-3xl font-bold text-green-600 mb-1">{user.following}</div>
+                      <div className="text-center p-3 sm:p-4 bg-green-50 dark:bg-green-950/30 rounded-xl">
+                        <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-1">{user.following}</div>
                         <div className="text-xs text-slate-600 dark:text-slate-400">Following</div>
                       </div>
-                      <div className="text-center p-4 bg-purple-50 dark:bg-purple-950/30 rounded-xl">
-                        <div className="text-3xl font-bold text-purple-600 mb-1">{user.public_repos}</div>
+                      <div className="text-center p-3 sm:p-4 bg-purple-50 dark:bg-purple-950/30 rounded-xl">
+                        <div className="text-2xl sm:text-3xl font-bold text-purple-600 mb-1">{user.public_repos}</div>
                         <div className="text-xs text-slate-600 dark:text-slate-400">Repositories</div>
                       </div>
-                      <div className="text-center p-4 bg-yellow-50 dark:bg-yellow-950/30 rounded-xl">
-                        <div className="text-3xl font-bold text-yellow-600 mb-1">{getTotalStars()}</div>
+                      <div className="text-center p-3 sm:p-4 bg-yellow-50 dark:bg-yellow-950/30 rounded-xl">
+                        <div className="text-2xl sm:text-3xl font-bold text-yellow-600 mb-1">{getTotalStars()}</div>
                         <div className="text-xs text-slate-600 dark:text-slate-400">Total Stars</div>
                       </div>
-                      <div className="text-center p-4 bg-red-50 dark:bg-red-950/30 rounded-xl">
-                        <div className="text-3xl font-bold text-red-600 mb-1">{user.public_gists || 0}</div>
+                      <div className="text-center p-3 sm:p-4 bg-red-50 dark:bg-red-950/30 rounded-xl">
+                        <div className="text-2xl sm:text-3xl font-bold text-red-600 mb-1">{user.public_gists || 0}</div>
                         <div className="text-xs text-slate-600 dark:text-slate-400">Gists</div>
                       </div>
                     </div>
@@ -618,7 +623,7 @@ export default function Home() {
                       <Progress value={getActivityScore()} className="h-2" />
                     </div>
 
-                    <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+                    <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
                       <a
                         href={user.html_url}
                         target="_blank"
@@ -646,60 +651,62 @@ export default function Home() {
             </Card>
 
             {/* Enhanced Tabs */}
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex space-x-1 bg-slate-200 dark:bg-slate-800 p-1 rounded-xl">
-                <button
-                  onClick={() => setActiveTab("repos")}
-                  className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                    activeTab === "repos"
-                      ? "bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-md"
-                      : "text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
-                  }`}
-                >
-                  <div className="flex items-center space-x-2">
-                    <Book className="h-4 w-4" />
-                    <span>Repositories ({filteredRepos.length})</span>
-                  </div>
-                </button>
-                <button
-                  onClick={() => setActiveTab("stats")}
-                  className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                    activeTab === "stats"
-                      ? "bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-md"
-                      : "text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
-                  }`}
-                >
-                  <div className="flex items-center space-x-2">
-                    <BarChart3 className="h-4 w-4" />
-                    <span>Statistics</span>
-                  </div>
-                </button>
-                <button
-                  onClick={() => setActiveTab("analytics")}
-                  className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                    activeTab === "analytics"
-                      ? "bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-md"
-                      : "text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
-                  }`}
-                >
-                  <div className="flex items-center space-x-2">
-                    <PieChart className="h-4 w-4" />
-                    <span>Analytics</span>
-                  </div>
-                </button>
-                <button
-                  onClick={() => setActiveTab("activity")}
-                  className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                    activeTab === "activity"
-                      ? "bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-md"
-                      : "text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
-                  }`}
-                >
-                  <div className="flex items-center space-x-2">
-                    <Activity className="h-4 w-4" />
-                    <span>Activity</span>
-                  </div>
-                </button>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex overflow-x-auto w-full sm:w-auto">
+                <div className="flex space-x-1 bg-slate-200 dark:bg-slate-800 p-1 rounded-xl min-w-max">
+                  <button
+                    onClick={() => setActiveTab("repos")}
+                    className={`px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-colors whitespace-nowrap ${
+                      activeTab === "repos"
+                        ? "bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-md"
+                        : "text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
+                    }`}
+                  >
+                    <div className="flex items-center space-x-1 sm:space-x-2">
+                      <Book className="h-4 w-4" />
+                      <span className="text-sm sm:text-base">Repos <span className="hidden sm:inline">({filteredRepos.length})</span></span>
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("stats")}
+                    className={`px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-colors whitespace-nowrap ${
+                      activeTab === "stats"
+                        ? "bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-md"
+                        : "text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
+                    }`}
+                  >
+                    <div className="flex items-center space-x-1 sm:space-x-2">
+                      <BarChart3 className="h-4 w-4" />
+                      <span className="text-sm sm:text-base">Stats</span>
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("analytics")}
+                    className={`px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-colors whitespace-nowrap ${
+                      activeTab === "analytics"
+                        ? "bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-md"
+                        : "text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
+                    }`}
+                  >
+                    <div className="flex items-center space-x-1 sm:space-x-2">
+                      <PieChart className="h-4 w-4" />
+                      <span className="text-sm sm:text-base">Analytics</span>
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("activity")}
+                    className={`px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-colors whitespace-nowrap ${
+                      activeTab === "activity"
+                        ? "bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-md"
+                        : "text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
+                    }`}
+                  >
+                    <div className="flex items-center space-x-1 sm:space-x-2">
+                      <Activity className="h-4 w-4" />
+                      <span className="text-sm sm:text-base">Activity</span>
+                    </div>
+                  </button>
+                </div>
               </div>
 
               {activeTab === "repos" && (

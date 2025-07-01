@@ -181,20 +181,24 @@ export const DeveloperBattle: React.FC<DeveloperBattleProps> = ({
         <Button
           variant={selectedMetric === 'overall' ? 'default' : 'outline'}
           onClick={() => setSelectedMetric('overall')}
-          className="flex items-center space-x-2"
+          className="flex items-center space-x-1 sm:space-x-2 text-xs sm:text-sm"
+          size="sm"
         >
-          <Crown className="h-4 w-4" />
-          <span>Overall Winner</span>
+          <Crown className="h-3 w-3 sm:h-4 sm:w-4" />
+          <span className="hidden sm:inline">Overall Winner</span>
+          <span className="sm:hidden">Overall</span>
         </Button>
         {battleMetrics.map((metric) => (
           <Button
             key={metric.name}
             variant={selectedMetric === metric.name ? 'default' : 'outline'}
             onClick={() => setSelectedMetric(metric.name)}
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-1 sm:space-x-2 text-xs sm:text-sm"
+            size="sm"
           >
             {metric.icon}
-            <span>{metric.name}</span>
+            <span className="hidden sm:inline">{metric.name}</span>
+            <span className="sm:hidden">{metric.name.split(' ')[0]}</span>
           </Button>
         ))}
       </div>
@@ -207,7 +211,7 @@ export const DeveloperBattle: React.FC<DeveloperBattleProps> = ({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
         >
           {battleStats
             .sort((a: BattleStats, b: BattleStats) => {
@@ -318,11 +322,11 @@ export const DeveloperBattle: React.FC<DeveloperBattleProps> = ({
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="text-center p-4 bg-yellow-50 dark:bg-yellow-950/20 rounded-lg">
-              <Crown className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
-              <h4 className="font-semibold text-yellow-800 dark:text-yellow-200">Overall Champion</h4>
-              <p className="text-sm text-yellow-700 dark:text-yellow-300">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="text-center p-3 sm:p-4 bg-yellow-50 dark:bg-yellow-950/20 rounded-lg">
+              <Crown className="h-6 w-6 sm:h-8 sm:w-8 text-yellow-600 mx-auto mb-2" />
+              <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 text-sm sm:text-base">Overall Champion</h4>
+              <p className="text-xs sm:text-sm text-yellow-700 dark:text-yellow-300 truncate">
                 {winner.user.name || winner.user.login}
               </p>
               <p className="text-xs text-yellow-600">
@@ -330,18 +334,18 @@ export const DeveloperBattle: React.FC<DeveloperBattleProps> = ({
               </p>
             </div>
 
-            <div className="text-center p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
-              <Zap className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-              <h4 className="font-semibold text-blue-800 dark:text-blue-200">Total Developers</h4>
-              <p className="text-sm text-blue-700 dark:text-blue-300">
+            <div className="text-center p-3 sm:p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
+              <Zap className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600 mx-auto mb-2" />
+              <h4 className="font-semibold text-blue-800 dark:text-blue-200 text-sm sm:text-base">Total Developers</h4>
+              <p className="text-xs sm:text-sm text-blue-700 dark:text-blue-300">
                 {users.length} in Battle
               </p>
             </div>
 
-            <div className="text-center p-4 bg-green-50 dark:bg-green-950/20 rounded-lg">
-              <Star className="h-8 w-8 text-green-600 mx-auto mb-2" />
-              <h4 className="font-semibold text-green-800 dark:text-green-200">Combined Stars</h4>
-              <p className="text-sm text-green-700 dark:text-green-300">
+            <div className="text-center p-3 sm:p-4 bg-green-50 dark:bg-green-950/20 rounded-lg sm:col-span-2 lg:col-span-1">
+              <Star className="h-6 w-6 sm:h-8 sm:w-8 text-green-600 mx-auto mb-2" />
+              <h4 className="font-semibold text-green-800 dark:text-green-200 text-sm sm:text-base">Combined Stars</h4>
+              <p className="text-xs sm:text-sm text-green-700 dark:text-green-300">
                 {battleStats.reduce((sum, stats) => 
                   sum + stats.repos.reduce((repoSum, repo) => repoSum + repo.stargazers_count, 0), 0
                 ).toLocaleString()}
